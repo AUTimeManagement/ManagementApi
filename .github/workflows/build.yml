@@ -9,6 +9,8 @@ jobs:
   build:
     name: Build and analyze
     runs-on: ubuntu-latest
+    env:
+      SOLUTION: 'AUTimeManagement.Api/AUTimeManagement.Api.sln'
     steps:
       - name: Set up JDK 11
         uses: actions/setup-java@v1
@@ -34,6 +36,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           dotnet sonarscanner begin  /k:"AUTimeManagement_ManagementApi" /o:"autimemanagement" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build --no-incremental --no-restore
-          dotnet test --no-build --no-restore --results-directory ./TestResult --collect:"XPlat Code Coverage" --settings coverlet.runsettings
+          dotnet build $SOLUTION --no-incremental --no-restore
+          dotnet test $SOLUTION --no-build --no-restore --results-directory ./TestResult --collect:"XPlat Code Coverage" --settings coverlet.runsettings
           dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
