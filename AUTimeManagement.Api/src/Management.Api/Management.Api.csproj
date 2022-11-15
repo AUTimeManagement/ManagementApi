@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Business.Logic\Business.Logic.csproj" />
-	  <InternalsVisibleTo Include="Management.Api.UnitTest"/>
-	  <InternalsVisibleTo Include="Management.Api.IntegrationTest"/>
+	  <InternalsVisibleTo Include="Management.Api.UnitTest" />
+	  <InternalsVisibleTo Include="Management.Api.IntegrationTest" />
   </ItemGroup>
 </Project>
